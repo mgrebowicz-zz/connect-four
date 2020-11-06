@@ -1,0 +1,64 @@
+//pesudo code for connect four
+//this game will expand on the logic used in tic tac toe to create 
+//a more complicated browser based game.The 6x7 board will be a 2D array with corresponding HTML 
+//and css. The gameplay will be click based using DOM elements and event listeners. 
+//The win logic will rely on checking horizontal,veritical and diagonal positions 
+//on the board until there are four circles of the same color in a row. There will also 
+//be a reset button to start a new game in case of a win or a draw. 
+
+/*----- constants -----*/
+//1. create a COLORS object with the following key/value pairs
+//null: 'white', '1': 'red', -1: 'yellow'
+//
+//
+/*----- app's state (variables) -----*/
+//2. create state variables for board, turn and winner.
+//
+//
+/*----- cached element references -----*/
+//3. select DOM elements and set to variables for positions, message and reset
+//
+//
+/*----- event listeners -----*/
+//4. attach event listener for clicks to the board (column) and call the handleClick function; 
+//4.1 attach event listener for reset button.
+//
+//
+/*----- functions -----*/
+//5. function initialize
+//5.1 initialize a board to a 2D array and set it to 6x7. Initialize al elements to null.
+//board[row][col];
+//5.2 set turn to 1.
+//5.3 set winner to null
+//5.4 call the render function
+//
+//6. function render
+//6.1 this will render the board after init and after every turn;
+//6.2 iterate through all positions on the board and set positions to the appropriate color;
+//
+//7. function handleClick
+//7.1 iterate across the positions array and return when when the target matches the position
+//7.2 check if the position is taken. if it is free 
+
+
+//8. function checkTaken(pos)
+//8.1 check if a position on the board is null, return a boolean value;
+
+//9. function checkHorizontal
+//9.1 iterate across the board rows and check the values at each index. 
+//increment a counter each time the current position and next postion are alike(1 or -1), reset the 
+//counter to 0 if they are not. if the counter reaches 4 return true
+//
+//10. function checkVertical
+//10.1 iterate across the board columns and check the values at each index. 
+//increment a counter each time the current position and next postion are alike(1 or -1), reset the 
+//counter to 0 if they are not. if the counter reaches 4 return true
+//
+//
+//11. function checkDiagonal
+//11.1 iterate across the board diagonally and check the values at each index. 
+//increment a counter each time the current position and next postion are alike(1 or -1), reset the 
+//counter to 0 if they are not. if the counter reaches 4 return true
+//
+
+
