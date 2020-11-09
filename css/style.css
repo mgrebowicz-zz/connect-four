@@ -1,21 +1,36 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 header {
-    padding: 10px;
-    
+    display: block; 
+    position: absolute;
+    background-color: tomato;
+    width: 100%;
+    height: 40px;
+    font-size: 40px;
+    top: 50px;
+    text-align: center;
 }
 
 .board {
+    position: absolute;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     background-color: blue;
     border: solid black;
-    height: 660px;
-    width: 770px;
+    height: 430px;
+    width: 485px;
+    bottom: 150px;
 }
 
 .board > div {
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     border-radius: 150%;
     background-color: white;
+    margin: 5px 0 0 5px;
 }
