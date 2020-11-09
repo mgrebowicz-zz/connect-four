@@ -1,0 +1,21 @@
+header {
+    padding: 10px;
+    
+}
+
+.board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    background-color: blue;
+    border: solid black;
+    height: 660px;
+    width: 770px;
+}
+
+.board > div {
+    height: 100px;
+    width: 100px;
+    border-radius: 150%;
+    background-color: white;
+}
