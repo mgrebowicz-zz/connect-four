@@ -1,6 +1,6 @@
 //*----- constants -----*/
 const COLORS = {
-    null: 'lightgreen', 
+    null: 'purple', 
     '1': 'red', 
     '-1': 'yellow'
 }
@@ -17,8 +17,8 @@ const message = document.querySelector('footer');
 const reset = document.querySelector('button');
 
 /*----- event listeners -----*/
-// document.getElementById('board')
-//     .addEventListener('click', handleClick);
+document.getElementById('board')
+    .addEventListener('click', handleClick);
 
 // document.querySelector('button')
 //     .addEventListener('click', resetGame);
@@ -27,30 +27,26 @@ const reset = document.querySelector('button');
 init();
 
 function init() {
-    board = new Array(6);
+    board = new Array(6).fill(new Array(7).fill(null));
     turn = 1;
     winner = null;
     render();
 };
 
 function render() {
-    //console.log(board)
     for (let i = 0; i <= board.length -1; i++) {
-        board[i] = new Array(7).fill(null)
-        let col = board[i]
-        for (let j = 0; j <= col.length -1; j++)
-        //debugger
-        player = board[i][j];
-        //console.log(i)
-        //console.log(j)
-        circle[i].style.backgroundColor = COLORS[player];
-        //console.log(player)
+        let col = board[i];
+        for (let j = 0; j <= col.length -1; j++) {
+            let player = board[i][j];
+            document.getElementById(`r${i}c${j}`).style.backgroundColor = COLORS[player];
+        };
     };
-    //console.log(board)
 };
 
-function handleClick() {
-
+function handleClick(evt) {
+    console.log(evt.target.id)
+    console.log(evt.target.id.charAt(1))
+    console.log(evt.target.id.charAt(3))
 }
 
 function checkHorizontal() {
