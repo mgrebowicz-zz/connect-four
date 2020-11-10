@@ -44,9 +44,15 @@ function render() {
 };
 
 function handleClick(evt) {
-    console.log(evt.target.id)
-    console.log(evt.target.id.charAt(1))
-    console.log(evt.target.id.charAt(3))
+    let targetCircle = evt.target;
+    let i = targetCircle.id.charAt(1);
+    let j = targetCircle.id.charAt(3);
+    targetCircle.style.backgroundColor = COLORS[turn];
+    for (let i = 0; i <= board.length -1; i++) {
+        board[i] = turn;
+    }
+    turn *= -1;
+    render();
 }
 
 function checkHorizontal() {
