@@ -1,6 +1,6 @@
 //*----- constants -----*/
 const COLORS = {
-    null: 'purple', 
+    null: 'lightslategrey', 
     '1': 'red', 
     '-1': 'yellow'
 }
@@ -27,42 +27,65 @@ document.getElementById('board')
 init();
 
 function init() {
-    board = new Array(6).fill(new Array(7).fill(null));
+    // board = new Array(6).fill(new Array(7).fill(null));
+    board = [
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null],
+        [null, null, null, null, null, null]
+    ];
     turn = 1;
     winner = null;
     render();
 };
 
 function render() {
-    for (let i = 0; i <= board.length -1; i++) {
-        let col = board[i];
-        for (let j = 0; j <= col.length -1; j++) {
-            let player = board[i][j];
-            document.getElementById(`r${i}c${j}`).style.backgroundColor = COLORS[player];
-        };
-    };
+    board.forEach(function(colArr, colIdx){
+        colArr.forEach(function(cellVal, rowIdx){
+            document.getElementById(`r${rowIdx}c${colIdx}`).style.backgroundColor = COLORS[cellVal];
+        });
+    });
 };
 
 function handleClick(evt) {
     let targetCircle = evt.target;
-    let i = targetCircle.id.charAt(1);
-    let j = targetCircle.id.charAt(3);
-    targetCircle.style.backgroundColor = COLORS[turn];
-    for (let i = 0; i <= board.length -1; i++) {
-        board[i] = turn;
-    }
+    if(targetCircle.tagName !== 'DIV') return;
+    let colIdx = targetCircle.id.charAt(3);
+    const colArr = board[colIdx];
+    let rowIdx = colArr.indexOf(null);
+    if (rowIdx === -1) return;
+    colArr[rowIdx] = turn;
+    
     turn *= -1;
     render();
 }
 
-function checkHorizontal() {
+ function checkWinner() { 
+    winner = checkRight() || checkVertical()
+    //else checkdiagn
+}
 
+function checkRight(rowIdx, colIdx) {
+    //return null
+    //let count = 0
+    for (let i = 0; i <= board.length -1; i++) {
+        for (let j = 1; j <= board[i].length - 1; j++) {
+            console.log(board[i][j])
+            // if (board[i][j] === board[i][j + 1]) {
+            //     console.log(count);
+            // }
+        }
+    }
+    //return count === 4;
 }
 
 function checkVertical() {
-
+    return null;
 }
 
-function checkDiagonal() {
+function checkDiagonalUp() {
 
 }
