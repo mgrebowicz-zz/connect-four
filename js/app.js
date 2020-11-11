@@ -27,7 +27,7 @@ document.getElementById('board')
 init();
 
 function init() {
-    // board = new Array(6).fill(new Array(7).fill(null));
+    // board = new Array(7).fill(new Array(6).fill(null));
     board = [
         [null, null, null, null, null, null],
         [null, null, null, null, null, null],
@@ -53,39 +53,44 @@ function render() {
 function handleClick(evt) {
     let targetCircle = evt.target;
     if(targetCircle.tagName !== 'DIV') return;
-    let colIdx = targetCircle.id.charAt(3);
+    let colIdx = Number(targetCircle.id.charAt(3));
     const colArr = board[colIdx];
     let rowIdx = colArr.indexOf(null);
     if (rowIdx === -1) return;
     colArr[rowIdx] = turn;
-    
+    let winner = checkHorizontal();
     turn *= -1;
+    console.log(winner);
     render();
 }
 
- function checkWinner() { 
-    winner = checkRight() || checkVertical()
-    //else checkdiagn
-}
+//  function checkWinner(rowIdx, colIdx) { 
+        //console.log(board)
+// }
 
-function checkRight(rowIdx, colIdx) {
-    //return null
-    //let count = 0
-    for (let i = 0; i <= board.length -1; i++) {
-        for (let j = 1; j <= board[i].length - 1; j++) {
-            console.log(board[i][j])
-            // if (board[i][j] === board[i][j + 1]) {
-            //     console.log(count);
-            // }
-        }
-    }
-    //return count === 4;
-}
+ function checkVertical() {
+    let count = 0;
+     board.forEach(function (colArr, colIdx) {
+         colArr.forEach(function (cellVal, rowIdx) {
+             if(colArr[cellVal] === colArr[cellVal + 1]) {
+                count += 1; 
+            };
+        });
+    });
+    return (count === 4 ? true : null);
+};
 
-function checkVertical() {
-    return null;
-}
+// function checkHorizontal() {
+//     let count = 0;
+//     board.forEach(function (colArr, colIdx) {
+//         if(colArr[colIdx] === colArr[colIdx + 1]) {
+//             count += 1;
+//         }
+//     });  
+//     console.log('---' + count + '---')  
+//     //return (count === 4 ? true : null);
+// }
 
-function checkDiagonalUp() {
+// function checkDiag {
 
-}
+// }
