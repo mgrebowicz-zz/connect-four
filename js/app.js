@@ -5,7 +5,6 @@ const COLORS = {
     '-1': 'palegoldenrod'
 }
 
-
 /*----- app's state (variables) -----*/ 
 let board; 
 let turn; 
@@ -15,6 +14,7 @@ let winner;
 const circle = document.querySelectorAll('div.circle');
 const message = document.querySelector('footer');
 const reset = document.querySelector('button');
+const backgroundMusic = document.getElementById('bgm');
 
 /*----- event listeners -----*/
 document.getElementById('board')
@@ -27,7 +27,6 @@ document.querySelector('button')
 init();
 
 function init() {
-    // board = new Array(7).fill(new Array(6).fill(null));
     board = [
         [null, null, null, null, null, null],
         [null, null, null, null, null, null],
@@ -39,6 +38,7 @@ function init() {
     ];
     turn = 1;
     winner = null;
+    //backgroundMusic.play();
     render();
 };
 
@@ -71,8 +71,8 @@ function handleClick(evt) {
 function checkWinner() {
     checkVertical();
     checkHorizontal();
+    checkDiagonal();
 } 
-
 
 function checkVertical() { 
     board.forEach(function(colArr, colIdx){
@@ -91,7 +91,6 @@ function checkVertical() {
 function checkHorizontal() {
     board.forEach(function(colArr, colIdx) {
         colArr.forEach(function(cellVal, rowIdx) {
-            console.log(board[colIdx])
             if ((cellVal) && (board[colIdx +3]) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx]) 
             && (board[colIdx][rowIdx] === board[colIdx + 2][rowIdx]) 
             && (board[colIdx][rowIdx] === board[colIdx + 3][rowIdx])) {
@@ -102,24 +101,21 @@ function checkHorizontal() {
 
     return null;
 };
-//not finding
-// function checkHorizontal() {
-//     for(let colIdx = 0; colIdx <= board.length -1; colIdx++ ) {
-//         let colArr = board[colIdx];
-//         for(let rowIdx = 0; rowIdx < colArr.length -1; rowIdx++) {
-//             let cellVal = colArr[rowIdx];
-//             if ((cellVal) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx])
-//              && (board[colIdx][rowIdx] === board[colIdx + 2][rowIdx])
-//              && (board[colIdx][rowIdx] === board[colIdx + 3][rowIdx])) {
-//                 console.log(true)
-//             }
-//         }   
-        
-//     }
 
-//     return null;
-// };
+function checkDiagonal() {
+    board.forEach(function(colArr, colIdx){
+        colArr.forEach(function(cellVal, rowIdx){
+            if ((cellVal) && (board[colIdx + 3]) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx + 1])
+                && (board[colIdx][rowIdx] === board[colIdx + 2][rowIdx + 2])
+                && (board[colIdx][rowIdx] === board[colIdx + 3][rowIdx + 3])) {
+                winner = board[colIdx][rowIdx];
+            }
+        })
+    })
+
+    return null;
+};
 
 function resetGame() {
     init();
-}
+};
