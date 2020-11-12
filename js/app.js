@@ -1,7 +1,7 @@
 //*----- constants -----*/
 const COLORS = {
     null: 'black', 
-    '1': 'lightgreen', 
+    '1': 'lightblue', 
     '-1': 'palegoldenrod'
 }
 
@@ -12,7 +12,7 @@ let turn;
 let winner;
 
 /*----- cached element references -----*/
-const circle = document.querySelectorAll('div');
+const circle = document.querySelectorAll('div.circle');
 const message = document.querySelector('footer');
 const reset = document.querySelector('button');
 
@@ -69,6 +69,11 @@ function handleClick(evt) {
     render();
 }
 
+function checkWinner() {
+    checkVertical();
+    checkHorizontal();
+} 
+
 
 function checkVertical() { 
     board.forEach(function(colArr, colIdx){
@@ -86,6 +91,7 @@ function checkVertical() {
 
 function checkHorizontal() {
     board.forEach(function(colArr, colIdx) {
+        //debugger
         colArr.forEach(function(cellVal, rowIdx) {
             if ((cellVal) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx]) 
             && (board[colIdx][rowIdx] === board[colIdx + 2][rowIdx]) 
@@ -97,7 +103,7 @@ function checkHorizontal() {
 
     return null;
 };
-
+//not finding
 // function checkHorizontal() {
 //     for(let colIdx = 0; colIdx <= board.length -1; colIdx++ ) {
 //         let colArr = board[colIdx];
