@@ -20,8 +20,8 @@ const reset = document.querySelector('button');
 document.getElementById('board')
     .addEventListener('click', handleClick);
 
-// document.querySelector('button')
-//     .addEventListener('click', resetGame);
+document.querySelector('button')
+    .addEventListener('click', resetGame);
 
 /*----- functions -----*/
 init();
@@ -53,44 +53,67 @@ function render() {
 function handleClick(evt) {
     let targetCircle = evt.target;
     if(targetCircle.tagName !== 'DIV') return;
-    let colIdx = Number(targetCircle.id.charAt(3));
+    let colIdx = targetCircle.id.charAt(3);
     const colArr = board[colIdx];
     let rowIdx = colArr.indexOf(null);
     if (rowIdx === -1) return;
     colArr[rowIdx] = turn;
-    let winner = checkHorizontal();
+    let winner = checkWin()
     turn *= -1;
-    console.log(winner);
     render();
 }
 
-//  function checkWinner(rowIdx, colIdx) { 
-        //console.log(board)
-// }
 
- function checkVertical() {
-    let count = 0;
-     board.forEach(function (colArr, colIdx) {
-         colArr.forEach(function (cellVal, rowIdx) {
-             if(colArr[cellVal] === colArr[cellVal + 1]) {
-                count += 1; 
-            };
-        });
-    });
-    return (count === 4 ? true : null);
+function checkWin() {
+    checkHorizontal();
+    //checkVertical();
+}
+
+function checkVertical() { 
+    board.forEach(function(colArr, colIdx){
+        colArr.forEach(function(cellVal, rowIdx) {
+            if ((cellVal) && ((colArr[rowIdx] === colArr[rowIdx + 1]) 
+            && (colArr[rowIdx] === colArr[rowIdx + 2]) 
+            && (colArr[rowIdx] === colArr[rowIdx + 3]))) {
+                return true;
+            }
+        }) 
+    })
+    
+    return null;
+};
+
+function checkHorizontal() {
+    board.forEach(function(colArr, colIdx) {
+        colArr.forEach(function(cellVal, rowIdx) {
+            if ((cellVal) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx]) 
+            && (board[colIdx][rowIdx] === board[colIdx + 2][rowIdx]) 
+            && (board[colIdx][rowIdx] === board[colIdx + 3][rowIdx])) {
+                console.log(true);
+            }
+        }) 
+    })
+
+    return null;
 };
 
 // function checkHorizontal() {
-//     let count = 0;
-//     board.forEach(function (colArr, colIdx) {
-//         if(colArr[colIdx] === colArr[colIdx + 1]) {
-//             count += 1;
-//         }
-//     });  
-//     console.log('---' + count + '---')  
-//     //return (count === 4 ? true : null);
-// }
+//     for(let colIdx = 0; colIdx <= board.length -1; colIdx++ ) {
+//         let colArr = board[colIdx];
+//         for(let rowIdx = 0; rowIdx < colArr.length -1; rowIdx++) {
+//             let cellVal = colArr[rowIdx];
+//             if ((cellVal) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx])
+//              && (board[colIdx][rowIdx] === board[colIdx + 2][rowIdx])
+//              && (board[colIdx][rowIdx] === board[colIdx + 3][rowIdx])) {
+//                 console.log(true)
+//             }
+//         }   
+        
+//     }
 
-// function checkDiag {
+//     return null;
+// };
 
-// }
+function resetGame() {
+    
+}
