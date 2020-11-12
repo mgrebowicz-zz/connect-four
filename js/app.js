@@ -63,8 +63,7 @@ function handleClick(evt) {
     let rowIdx = colArr.indexOf(null);
     if (rowIdx === -1) return;
     colArr[rowIdx] = turn;
-    checkVertical();
-    checkHorizontal();
+    checkWinner();
     turn *= -1;
     render();
 }
@@ -91,9 +90,9 @@ function checkVertical() {
 
 function checkHorizontal() {
     board.forEach(function(colArr, colIdx) {
-        //debugger
         colArr.forEach(function(cellVal, rowIdx) {
-            if ((cellVal) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx]) 
+            console.log(board[colIdx])
+            if ((cellVal) && (board[colIdx +3]) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx]) 
             && (board[colIdx][rowIdx] === board[colIdx + 2][rowIdx]) 
             && (board[colIdx][rowIdx] === board[colIdx + 3][rowIdx])) {
                 winner = board[colIdx][rowIdx];
