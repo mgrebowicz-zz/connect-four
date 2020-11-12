@@ -1,8 +1,8 @@
 //*----- constants -----*/
 const COLORS = {
-    null: 'lightslategrey', 
-    '1': 'red', 
-    '-1': 'yellow'
+    null: 'black', 
+    '1': 'darkgrey', 
+    '-1': 'whitesmoke'
 }
 
 
@@ -46,8 +46,13 @@ function render() {
     board.forEach(function(colArr, colIdx){
         colArr.forEach(function(cellVal, rowIdx){
             document.getElementById(`r${rowIdx}c${colIdx}`).style.backgroundColor = COLORS[cellVal];
-        });
-    });
+        })
+    })
+    if (winner !== null) {
+        message.innerHTML = `CONGRATULATIONS ${COLORS[winner].toUpperCase()} YOU ARE VICTORIOUS`;
+    } else {
+        message.innerHTML = `${COLORS[turn].toUpperCase()} TAKE YOUR TURN`;
+    };
 };
 
 function handleClick(evt) {
@@ -58,16 +63,12 @@ function handleClick(evt) {
     let rowIdx = colArr.indexOf(null);
     if (rowIdx === -1) return;
     colArr[rowIdx] = turn;
-    let winner = checkWin()
+    checkVertical();
+    checkHorizontal();
     turn *= -1;
     render();
 }
 
-
-function checkWin() {
-    checkHorizontal();
-    //checkVertical();
-}
 
 function checkVertical() { 
     board.forEach(function(colArr, colIdx){
@@ -75,7 +76,7 @@ function checkVertical() {
             if ((cellVal) && ((colArr[rowIdx] === colArr[rowIdx + 1]) 
             && (colArr[rowIdx] === colArr[rowIdx + 2]) 
             && (colArr[rowIdx] === colArr[rowIdx + 3]))) {
-                return true;
+                winner = colArr[rowIdx];
             }
         }) 
     })
@@ -89,7 +90,7 @@ function checkHorizontal() {
             if ((cellVal) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx]) 
             && (board[colIdx][rowIdx] === board[colIdx + 2][rowIdx]) 
             && (board[colIdx][rowIdx] === board[colIdx + 3][rowIdx])) {
-                console.log(true);
+                winner = board[colIdx][rowIdx];
             }
         }) 
     })
@@ -115,5 +116,5 @@ function checkHorizontal() {
 // };
 
 function resetGame() {
-    
+    init();
 }
