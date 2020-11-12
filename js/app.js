@@ -1,8 +1,8 @@
 //*----- constants -----*/
 const COLORS = {
     null: 'black', 
-    '1': 'darkgrey', 
-    '-1': 'whitesmoke'
+    '1': 'lightgreen', 
+    '-1': 'palegoldenrod'
 }
 
 
