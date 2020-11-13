@@ -95,8 +95,6 @@ function checkVertical() {
             }
         }) 
     })
-    
-    return null;
 };
 
 function checkHorizontal() {
@@ -109,8 +107,6 @@ function checkHorizontal() {
             }
         }) 
     })
-
-    return null;
 };
 
 function checkDiagonalUp() {
@@ -123,8 +119,6 @@ function checkDiagonalUp() {
             }
         })
     })
-
-    return null;
 };
 
 function checkDiagonalDown() {
@@ -137,8 +131,6 @@ function checkDiagonalDown() {
             }
         })
     })
-
-    return null;
 };
 
 function handleBgChanged() {
