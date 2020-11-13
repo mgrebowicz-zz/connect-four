@@ -11,10 +11,14 @@ let turn;
 let winner;
 
 /*----- cached element references -----*/
+const player = new Audio();
 const circle = document.querySelectorAll('div.circle');
 const message = document.querySelector('footer');
 const reset = document.querySelector('button');
 const backgroundMusic = document.getElementById('bgm');
+
+/*----- volume -----*/
+backgroundMusic.volume = .5;
 
 /*----- event listeners -----*/
 document.getElementById('board')
@@ -38,9 +42,11 @@ function init() {
     ];
     turn = 1;
     winner = null;
-    //backgroundMusic.play();
+    backgroundMusic.play();
     render();
 };
+
+init();
 
 function render() {
     board.forEach(function(colArr, colIdx){
