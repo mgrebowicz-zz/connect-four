@@ -1,7 +1,20 @@
 # Connect Four
 
-### A simple game of Connect Four inspired by the Alien films. This game uses HTML, CSS and Javascript to put a new spin on an old classic. In the future I would like to optimize this to a mobile device as well as add an AI component to allow the user to play against the computer. Click the link below to play!
+### A simple game of Connect Four inspired by the Alien films. This game uses HTML, CSS and Javascript to put a new spin on an old classic. 
 
-### Screenshot: https://i.imgur.com/z06pfhN.png
+### Screenshot: Take a look. 
 
-### Getting started: https://mgrebowicz.github.io/connect-four/
+<img src="https://i.imgur.com/z06pfhN.png" alt="" srcset="">
+
+### Getting started: Just click on one of the circles when you are ready to play. 
+
+https://mgrebowicz.github.io/connect-four/
+
+### Icebox Items: Additions I would like to make in the future:
+
+* Enable user vs coumpter gameplay
+* Optimize for use on mobile screens
+* Add additional game logic
+    * Tie condition
+    * Illuminate the winning hand
+
