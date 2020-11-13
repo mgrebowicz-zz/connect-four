@@ -3,7 +3,7 @@ const COLORS = {
     null: 'black', 
     '1': 'lightblue', 
     '-1': 'palegoldenrod'
-}
+};
 
 /*----- app's state (variables) -----*/ 
 let board; 
@@ -76,14 +76,14 @@ function handleClick(evt) {
     checkWinner();
     turn *= -1;
     render();
-}
+};
 
 function checkWinner() {
     checkVertical();
     checkHorizontal();
     checkDiagonalUp();
     checkDiagonalDown();
-} 
+};
 
 function checkVertical() { 
     board.forEach(function(colArr, colIdx){
