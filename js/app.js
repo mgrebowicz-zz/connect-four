@@ -135,7 +135,7 @@ function checkDiagonalDown() {
 
 function handleBgChanged() {
     bgCheckbox.checked ? bgmPlayer.play() : bgmPlayer.pause();
-}
+};
 
 function resetGame() {
     clickSound.play();
