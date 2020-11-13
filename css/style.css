@@ -82,6 +82,13 @@ button {
     background:transparent;
     border: none;
     border-radius: 35%;
+    margin-bottom: 100px;
 }
 
+input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color:
+}
 

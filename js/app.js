@@ -15,10 +15,12 @@ const player = new Audio();
 const circle = document.querySelectorAll('div.circle');
 const message = document.querySelector('footer');
 const reset = document.querySelector('button');
-const backgroundMusic = document.getElementById('bgm');
+const bgCheckbox = document.querySelector('input[type="checkbox"]');
+const bgmPlayer = document.getElementById('bgm-player');
+const clickSound = new Audio('https://freesound.org/data/previews/364/364711_2531187-lq.mp3');
 
 /*----- volume -----*/
-backgroundMusic.volume = .5;
+bgmPlayer.volume = .5;
 
 /*----- event listeners -----*/
 document.getElementById('board')
@@ -26,6 +28,8 @@ document.getElementById('board')
 
 document.querySelector('button')
     .addEventListener('click', resetGame);
+
+bgCheckbox.addEventListener('change', handleBgChanged);
 
 /*----- functions -----*/
 init();
@@ -42,7 +46,6 @@ function init() {
     ];
     turn = 1;
     winner = null;
-    backgroundMusic.play();
     render();
 };
 
@@ -69,6 +72,7 @@ function handleClick(evt) {
     let rowIdx = colArr.indexOf(null);
     if (rowIdx === -1) return;
     colArr[rowIdx] = turn;
+    clickSound.play();
     checkWinner();
     turn *= -1;
     render();
@@ -77,7 +81,8 @@ function handleClick(evt) {
 function checkWinner() {
     checkVertical();
     checkHorizontal();
-    checkDiagonal();
+    checkDiagonalUp();
+    checkDiagonalDown();
 } 
 
 function checkVertical() { 
@@ -108,7 +113,7 @@ function checkHorizontal() {
     return null;
 };
 
-function checkDiagonal() {
+function checkDiagonalUp() {
     board.forEach(function(colArr, colIdx){
         colArr.forEach(function(cellVal, rowIdx){
             if ((cellVal) && (board[colIdx + 3]) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx + 1])
@@ -122,6 +127,25 @@ function checkDiagonal() {
     return null;
 };
 
+function checkDiagonalDown() {
+    board.forEach(function (colArr, colIdx) {
+        colArr.forEach(function (cellVal, rowIdx) {
+            if ((cellVal) && (board[colIdx + 3]) && (board[colIdx][rowIdx] === board[colIdx + 1][rowIdx - 1])
+                && (board[colIdx][rowIdx] === board[colIdx + 2][rowIdx - 2])
+                && (board[colIdx][rowIdx] === board[colIdx + 3][rowIdx - 3])) {
+                winner = board[colIdx][rowIdx];
+            }
+        })
+    })
+
+    return null;
+};
+
+function handleBgChanged() {
+    bgCheckbox.checked ? bgmPlayer.play() : bgmPlayer.pause();
+}
+
 function resetGame() {
+    clickSound.play();
     init();
 };
